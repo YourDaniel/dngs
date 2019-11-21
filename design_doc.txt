@@ -1,0 +1,65 @@
+Good game is capable of creating an interesting story
+
+dungeon:
+monsters every room, loot after defeating monster,
+good loot after defeating boss
+first room - always loot
+10 rooms, last one boss - one floor
+monsters become more powerful when proceeding through rooms
+
+monsters:
+monster stats and abilities are hidden but sometimes you can see them
+
+unexplored rooms:
+there are 5 (random?) rooms you can explore besides original 10
+number of unexplored rooms grows randomly after clearing a room
+in those rooms there are random encounters (mostly positive): npc, loot, buffs etc.
+you get a bonus when you get to the end with unexplored rooms
+
+encounters:
+crystal  lake + 20 hp next fight
+traveling merchant exchange weapons
+shop - sell items, shopkeeper sells for 3x price
+
+battle:
+attack each other until one is dead
+you know stats of a monster after the fight and its ability
+Monster: 2/10 +ability
+You: weapon damage (calculated)/HP
+You retreat from the fight when HP is 0
+HP regenerates after clearing a room
+
+Stats:
+crit chance: x3 damage on attack
+block chance: negate attack
+resist damage: -1/-2/-3
+weapons can give stats
+
+armor:
+gives raw HP and sometimes stats
+left boot, right boot, pants, leg armor, shirt, body armor, left gauntlet, right gauntlet, helmet, shoulder pad
+armor and weapon stats are hidden but sometimes you can see it
+
+character:
+choose a perk from 3 out of 20 perks at the start (maybe it's called a class)
+perks are both positive and negative
+you can gain abilities which help in fight
+there are maximum 3 abilities. you can delete others to learn new
+
+classes:
+everyone has starting weapon
+
+rogue - can wear 2 small weapons, has -1 attack with everything else
+warrior - +2 attack  with big weapons, 
+knight - get bonus from wearing same pieces of armor
+thief - once a floor can sneak through a common room, rob the monsters and get the loot
+vigilante - always attacks monster first
+weaponsmith - once a floor can repair any weapon to new (chance to backfire)
+enchanter - once a floor can enchant any weapon increasing quality and gaining small bonus (backfire)
+berserk - once a fight survives killing blow, and deals crit damage afterwards
+necromancer - lifesteals from attacks
+royal guard - starts with golden suit of armor, 0% base crit chance
+assassin - +10% crit chance
+
+
+tell masha
