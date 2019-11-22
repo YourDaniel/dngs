@@ -11,7 +11,6 @@ kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
 with open('weapons.json', 'r', encoding='UTF-8-sig') as file:
     weapons = json.load(file)
 
-# . - ~ ≈ • ○ ☼
 # TODO: RARE things cant be bad quality or broken
 # TODO: tune random chances of things
 rarity = {'common': 0.8, 'ordinary': 1, 'uncommon': 1.2, 'original': 1.8, 'rare': 2, 'unique': 2.4, 'legendary': 3, 'mythic': 3.5}
@@ -77,10 +76,7 @@ class Hero:
         for i in range(len(self.weapons)):
             name = self.weapons[i].name
             dmg = self.weapons[i].damage
-            clr = self.weapons[i].color
-            print(i+1, end=' ')
-            print_colored(name, clr)
-            print(f'. DMG: {dmg}')
+            print(f' {i+1} {name} DMG: {dmg}')
 
 
 class Enemy:
@@ -92,7 +88,7 @@ class Enemy:
     def generate_name(self):
         adjectives = ['scary', 'bone', 'horrible', 'putrid', 'bloodthirsty', 'death', 'old', 'dark', 'fierce', 'horror', 'hell', 'venomous', 'doom', 'furious']
         monsters = ['frog', 'blob', 'bear', 'fairy', 'snake', 'minotaur', 'spider', 'bat', 'abomination', 'slug', 'rat', 'ooze'] + animals
-        name = choice(adjectives).capitalize() + ' ' + choice(monsters).capitalize()
+        name = Color.red + choice(adjectives).capitalize() + ' ' + choice(monsters).capitalize() + Color.reset
         return name
     
 
@@ -101,19 +97,14 @@ class Loot:
         rar = choices(list(rarity), weights=[60, 50, 40, 30, 20, 10, 5, 2])[0]
         wr = choices(list(wear), weights=[5, 20, 40, 10])[0]
         qual = choices(list(quality), weights=[8, 10, 15, 20, 12, 6, 2])[0]
-        print(rar, wr, qual)
         mat = choice(list(armor_material))
         wpn_n = randint(0, len(weapons['weapons']) - 1)
         cost_value = weapons['weapons'][wpn_n]['cost']
-        # TODO: find out why choices return list
         cost = cost_value * quality[qual] * wear[wr] * rarity[rar]
         weapon_name = rar.capitalize() + ' ' + weapons['weapons'][wpn_n]['name']
         weapon = Item(weapon_name, rar, qual, wr, mat, weapons['weapons'][wpn_n]['damage'])
-        print(f"You've got", end=' ')
-        print_colored(weapon_name, weapon.color)
-        print(f' of {qual} quality! It is {wr}. Cost: {int(cost)}')
+        print(f"You've got {weapon.name} of {qual} quality! It is {wr}. Cost: {cost}")
         return weapon
-
 
     def generate_armor(self):
         rar = choice(list(rarity))
@@ -131,7 +122,7 @@ def main():
     loot = Loot()
     inventory = []
     hero = Hero(10, 1)
-    monsters = [Enemy(randint(3, 12) + i*10, i+1) for i in range(10)]
+    monsters = [Enemy(randint(3, 12) + i*3, i+1) for i in range(10)]
     lives = 3
     monster_id = 0
     print(f'You are mighty hero! HP: {hero.hp}. ATTACK: {hero.attack}')

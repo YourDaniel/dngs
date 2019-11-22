@@ -1,3 +1,5 @@
+from ansi_wraps import Color
+
 class Item:
     def __init__(self, name, rarity, quality, wear, material, damage):
         self.quality = quality
@@ -14,36 +16,37 @@ class Item:
         elif self.quality == 'good':
             qual_char ='•'
         elif self.quality == 'perfect':
-            qual_char ='○'
+            qual_char ='#'
         elif self.quality == 'masterpiece':
             qual_char ='☼'
         else:
             qual_char = ''
-        self.name = qual_char + name + qual_char
+        self.name_unc = qual_char + name + qual_char # name uncolored
         self.rarity = rarity
-        self.wear = wear
-        self.material = material
         self.damage = damage
         if self.rarity == 'common':
-            self.color = 'l_black'
+            self.color = Color.l_black
         elif self.rarity == 'ordinary':
-            self.color = 'l_white'
+            self.color = Color.l_white
         elif self.rarity == 'uncommon':
-            self.color = 'l_yellow'
+            self.color = Color.l_green
         elif self.rarity == 'original':
-            self.color = 'cyan'
+            self.color = Color.cyan
         elif self.rarity == 'rare':
-            self.color = 'l_blue'
+            self.color = Color.l_blue
         elif self.rarity == 'unique':
-            self.color = 'magenta'
+            self.color = Color.l_magenta
         elif self.rarity == 'legendary':
-            self.color = 'yellow'
+            self.color = Color.yellow
         elif self.rarity == 'mythic':
-            self.color = 'red'
+            self.color = Color.red
         else:
-            self.color = 'white'
+            self.color = Color.white
+        self.name = self.color + self.name_unc + Color.reset
 
-        # gray, white, light green, yellow, blue, purple, orange, red
-        #rarity = {'common': 0.8, 'ordinary': 1, 'uncommon': 1.2, 'original': 1.8, 'rare': 2, 'unique': 2.4,
-              #    'legendary': 3, 'mythic': 3.5}
+        self.wear = wear
+        self.material = material
+
+    def print_description(self):
+        pass
 
