@@ -1,8 +1,8 @@
-from random import choice
+from random import choice, choices
 from random import randint
 from readchar import readkey
 from items import Item
-from ansi_wraps import print_colored
+from ansi_wraps import *
 import json
 import ctypes
 kernel32 = ctypes.windll.kernel32
@@ -11,13 +11,12 @@ kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
 with open('weapons.json', 'r', encoding='UTF-8-sig') as file:
     weapons = json.load(file)
 
-# gray, white, light green, yellow, blue, purple, orange, red
-rarity = {'common': 0.8, 'ordinary': 1, 'uncommon': 1.2, 'original': 1.8, 'rare': 2, 'unique': 2.4, 'legendary': 3, 'mythic': 3.5}
+# . - ~ ≈ • ○ ☼
 # TODO: RARE things cant be bad quality or broken
 # TODO: tune random chances of things
+rarity = {'common': 0.8, 'ordinary': 1, 'uncommon': 1.2, 'original': 1.8, 'rare': 2, 'unique': 2.4, 'legendary': 3, 'mythic': 3.5}
 wear = {'broken': 0.4, 'worn': 0.8, 'used': 1, 'new': 1.2}
-quality = {'terrible': 0.5, 'poor': 0.8, 'fine': 1, 'decent': 1.2, 'good': 1.4, 'perfect': 1.8, 'epic': 2.4, 'masterpiece': 3}
-#weapon = {'dagger': 15, 'sword': 30, 'longsword': 50, 'mace': 50, 'axe': 20, 'flail': 35, 'tomahawk': 25, 'halberd': 50, 'battle axe': 60, 'club': 10, 'pike': 15, 'spear': 40}
+quality = {'terrible': 0.5, 'poor': 0.8, 'decent': 1, 'fine': 1.2, 'good': 1.4, 'perfect': 1.8, 'masterpiece': 2.6}
 armor_material = ['cloth', 'fur', 'leather', 'iron', 'steel', 'black steel', 'gold', 'mythril', 'adamantine', 'silver']
 animals = ['bear', 'fox', 'wolf', 'cave spider', 'dragon', 'elephant', 'marten', 'arctic fox', 'squirrel', 'sable']
 armor_piece = ['left boot', 'right boot', 'left gauntlet', 'right gauntlet', 'pants', 'shirt', 'leg armor', 'body armor', 'shoulder pad', 'helmet']
@@ -99,12 +98,14 @@ class Enemy:
 
 class Loot:
     def generate_weapon(self):
-        rar = choice(list(rarity))
-        wr = choice(list(wear))
-        qual = choice(list(quality))
+        rar = choices(list(rarity), weights=[60, 50, 40, 30, 20, 10, 5, 2])[0]
+        wr = choices(list(wear), weights=[5, 20, 40, 10])[0]
+        qual = choices(list(quality), weights=[8, 10, 15, 20, 12, 6, 2])[0]
+        print(rar, wr, qual)
         mat = choice(list(armor_material))
         wpn_n = randint(0, len(weapons['weapons']) - 1)
         cost_value = weapons['weapons'][wpn_n]['cost']
+        # TODO: find out why choices return list
         cost = cost_value * quality[qual] * wear[wr] * rarity[rar]
         weapon_name = rar.capitalize() + ' ' + weapons['weapons'][wpn_n]['name']
         weapon = Item(weapon_name, rar, qual, wr, mat, weapons['weapons'][wpn_n]['damage'])
@@ -125,6 +126,7 @@ class Loot:
 
         
 def main():
+    clear()
     #name = input('Enter your name: ')
     loot = Loot()
     inventory = []
@@ -143,14 +145,11 @@ def main():
             elif action == 'g':
                 print('Going into the next room!')
                 break
-        print(f'You encountered {monsters[monster_id].name}!')
+        print(f'You encountered {monsters[monster_id].name}!') #TODO: add red monster font
         if hero.fight_monster(monsters[monster_id]):
-            atk = randint(0, 1)
             hp = randint(15, 30)
-            #hero.max_hp += hp
             hero.hp += hp
-            hero.attack += atk
-            print(f'You gained {atk} attack and healed for {hp} hp!')
+            print(f'You healed for {hp} hp!')
             coin =  1 #randint(0, 1)
             if coin == 0:
                 inventory.append(loot.generate_armor())

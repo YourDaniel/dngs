@@ -3,6 +3,15 @@ kernel32 = ctypes.windll.kernel32
 kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
 
 
+def clear_what():
+    print('\x1b[2J', end='')
+
+
+def clear():
+    print('\033[2J', end='')
+
+
+
 def print_colored(string, color, end=''):
     if color == 'black':
         print('\u001b[30m' + string + '\u001b[0m', end=end)

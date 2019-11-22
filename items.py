@@ -1,8 +1,26 @@
 class Item:
     def __init__(self, name, rarity, quality, wear, material, damage):
-        self.name = name
-        self.rarity = rarity
         self.quality = quality
+
+        # - = ~ ≈ • ○ ☼
+        if self.quality == 'terrible':
+            qual_char ='-'
+        elif self.quality == 'poor':
+            qual_char ='='
+        elif self.quality == 'decent':
+            qual_char = '~'
+        elif self.quality == 'fine':
+            qual_char ='≈'
+        elif self.quality == 'good':
+            qual_char ='•'
+        elif self.quality == 'perfect':
+            qual_char ='○'
+        elif self.quality == 'masterpiece':
+            qual_char ='☼'
+        else:
+            qual_char = ''
+        self.name = qual_char + name + qual_char
+        self.rarity = rarity
         self.wear = wear
         self.material = material
         self.damage = damage
@@ -15,7 +33,7 @@ class Item:
         elif self.rarity == 'original':
             self.color = 'cyan'
         elif self.rarity == 'rare':
-            self.color = 'blue'
+            self.color = 'l_blue'
         elif self.rarity == 'unique':
             self.color = 'magenta'
         elif self.rarity == 'legendary':
