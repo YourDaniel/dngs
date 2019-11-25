@@ -1,100 +1,98 @@
-﻿{
-    "weapons": [
-        {
-            "name": "Dagger",
-            "cost": 15,
-            "damage": 3,
-            "size": 1,
-            "type": "edged",
-            "ability": "5% crit chance"
-        },
-        {
-            "name": "Sword",
-            "cost": 30,
-            "damage": 5,
-            "size": 1,
-            "type": "edged",
-            "ability": "5% block chance"
-        },
-        {
-            "name": "Longsword",
-            "cost": 50,
-            "damage": 7,
-            "size": 2,
-            "type": "edged",
-            "ability": "-"
-        },
-        {
-            "name": "Axe",
-            "cost": 20,
-            "damage": 4,
-            "size": 1,
-            "type": "chop",
-            "ability": "-"
-        },
-        {
-            "name": "Tomahawk",
-            "cost": 25,
-            "damage": 5,
-            "size": 1,
-            "type": "chop",
-            "ability": "-"
-        },
-        {
-            "name": "Battleaxe",
-            "cost": 60,
-            "damage": 7,
-            "size": 2,
-            "type": "chop",
-            "ability": "-"
-        },
-        {
-            "name": "Spear",
-            "cost": 15,
-            "damage": 3,
-            "size": 1,
-            "type": "pointed",
-            "ability": "-"
-        },
-        {
-            "name": "Pike",
-            "cost": 40,
-            "damage": 6,
-            "size": 1,
-            "type": "pointed",
-            "ability": "-"
-        },
-        {
-            "name": "Glaive",
-            "cost": 50,
-            "damage": 7,
-            "size": 2,
-            "type": "pointed",
-            "ability": "-"
-        },
-        {
-            "name": "Club",
-            "cost": 10,
-            "damage": 2,
-            "size": 1,
-            "type": "blunt",
-            "ability": "5% stun chance"
-        },
-        {
-            "name": "Flail",
-            "cost": 35,
-            "damage": 5,
-            "size": 1,
-            "type": "blunt",
-            "ability": "-"
-        },
-        {
-            "name": "Mace",
-            "cost": 50,
-            "damage": 6,
-            "size": 1,
-            "type": "blunt",
-            "ability": "10% stun chance"
-        }
-    ]
-}
+﻿[
+    {
+        "name": "Dagger",
+        "cost": 15,
+        "damage": 3,
+        "size": 1,
+        "type": "edged",
+        "ability": "5% crit chance"
+    },
+    {
+        "name": "Sword",
+        "cost": 30,
+        "damage": 5,
+        "size": 1,
+        "type": "edged",
+        "ability": "5% block chance"
+    },
+    {
+        "name": "Longsword",
+        "cost": 50,
+        "damage": 7,
+        "size": 2,
+        "type": "edged",
+        "ability": "-"
+    },
+    {
+        "name": "Axe",
+        "cost": 20,
+        "damage": 4,
+        "size": 1,
+        "type": "chop",
+        "ability": "-"
+    },
+    {
+        "name": "Tomahawk",
+        "cost": 25,
+        "damage": 5,
+        "size": 1,
+        "type": "chop",
+        "ability": "-"
+    },
+    {
+        "name": "Battleaxe",
+        "cost": 60,
+        "damage": 7,
+        "size": 2,
+        "type": "chop",
+        "ability": "-"
+    },
+    {
+        "name": "Spear",
+        "cost": 15,
+        "damage": 3,
+        "size": 1,
+        "type": "pointed",
+        "ability": "-"
+    },
+    {
+        "name": "Pike",
+        "cost": 40,
+        "damage": 6,
+        "size": 1,
+        "type": "pointed",
+        "ability": "-"
+    },
+    {
+        "name": "Glaive",
+        "cost": 50,
+        "damage": 7,
+        "size": 2,
+        "type": "pointed",
+        "ability": "-"
+    },
+    {
+        "name": "Club",
+        "cost": 10,
+        "damage": 2,
+        "size": 1,
+        "type": "blunt",
+        "ability": "5% stun chance"
+    },
+    {
+        "name": "Flail",
+        "cost": 35,
+        "damage": 5,
+        "size": 1,
+        "type": "blunt",
+        "ability": "-"
+    },
+    {
+        "name": "Mace",
+        "cost": 50,
+        "damage": 6,
+        "size": 1,
+        "type": "blunt",
+        "ability": "10% stun chance"
+    }
+]

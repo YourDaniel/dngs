@@ -1,0 +1,82 @@
+[
+    {
+        "name": "cloth",
+        "weapons": 0,
+        "light_armor": 1,
+        "heavy_armor": 0,
+        "cost_modifier": 0.6,
+        "stat_modifier": 0.6
+    },
+    {
+        "name": "fur",
+        "weapons": 0,
+        "light_armor": 1,
+        "heavy_armor": 1,
+        "cost_modifier": 0.8,
+        "stat_modifier": 0.8
+    },
+    {
+        "name": "wood",
+        "weapons": 1,
+        "light_armor": 0,
+        "heavy_armor": 1,
+        "cost_modifier": 0.4,
+        "stat_modifier": 0.5
+    },
+    {
+        "name": "iron",
+        "weapons": 1,
+        "light_armor": 0,
+        "heavy_armor": 1,
+        "cost_modifier": 1,
+        "stat_modifier": 1
+    },
+    {
+        "name": "steel",
+        "weapons": 1,
+        "light_armor": 1,
+        "heavy_armor": 1,
+        "cost_modifier": 1.2,
+        "stat_modifier": 1.4
+    },
+    {
+        "name": "silver",
+        "weapons": 1,
+        "light_armor": 1,
+        "heavy_armor": 1,
+        "cost_modifier": 1.9,
+        "stat_modifier": 1.1
+    },
+    {
+        "name": "black steel",
+        "weapons": 1,
+        "light_armor": 0,
+        "heavy_armor": 1,
+        "cost_modifier": 1.6,
+        "stat_modifier": 1.7
+    },
+    {
+        "name": "gold",
+        "weapons": 1,
+        "light_armor": 0,
+        "heavy_armor": 1,
+        "cost_modifier": 2,
+        "stat_modifier": 0.9
+    },
+    {
+        "name": "mythril",
+        "weapons": 1,
+        "light_armor": 1,
+        "heavy_armor": 1,
+        "cost_modifier": 2.8,
+        "stat_modifier": 2
+    },
+    {
+        "name": "adamantine",
+        "weapons": 1,
+        "light_armor": 0,
+        "heavy_armor": 1,
+        "cost_modifier": 3.5,
+        "stat_modifier": 2.5
+    }
+]
