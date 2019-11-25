@@ -79,6 +79,11 @@ class Hero:
             cost = self.weapons[i].cost
             print(f'{i+1} {name} DMG: {dmg} COST: {cost}')
 
+    def heal(self, amount):
+        self.hp += amount
+        if self.hp > self.max_hp:
+            self.hp = self.max_hp
+
 
 class Enemy:
     def __init__(self, hp, attack):
@@ -91,7 +96,7 @@ class Enemy:
         monsters = ['frog', 'blob', 'bear', 'fairy', 'snake', 'minotaur', 'spider', 'bat', 'abomination', 'slug', 'rat', 'ooze'] + animals
         name = Color.red + choice(adjectives).capitalize() + ' ' + choice(monsters).capitalize() + Color.reset
         return name
-    
+
 
 class Loot:
     def generate_weapon(self):

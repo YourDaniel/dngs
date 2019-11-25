@@ -1,34 +1,40 @@
 import ctypes
+import os
 kernel32 = ctypes.windll.kernel32
 kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
 
+# \033 \x1b - escape character
 
-def clear_what():
-    print('\x1b[2J', end='')
-
+def clear_test():
+    print('\x1b[H\x1b[J', end='')
+def test_2():
+    print('\x1b[1;1H\x1b[J')
+    print('\033[2J', end='')
 
 def clear():
-    print('\033[2J', end='')
+    os.system('cls')
+
 
 
 class Color:
-    black = '\u001b[30m'
-    red = '\u001b[31m'
-    green = '\u001b[32m'
-    yellow = '\u001b[33m'
-    blue = '\u001b[34m'
-    magenta = '\u001b[35m'
-    cyan = '\u001b[36m'
-    white = '\u001b[37m'
-    l_black = '\u001b[30;1m'
-    l_red = '\u001b[31;1m'
-    l_green = '\u001b[32;1m'
-    l_yellow = '\u001b[33;1m'
-    l_blue = '\u001b[34;1m'
-    l_magenta = '\u001b[35;1m'
-    l_cyan = '\u001b[36;1m'
-    l_white = '\u001b[37;1m'
-    reset = '\u001b[0m'
+    bold = '\033[1m'
+    black = '\033[30m'
+    red = '\033[31m'
+    green = '\033[32m'
+    yellow = '\033[33m'
+    blue = '\033[34m'
+    magenta = '\033[35m'
+    cyan = '\033[36m'
+    white = '\033[37m'
+    l_black = '\033[30;1m'
+    l_red = '\033[31;1m'
+    l_green = '\033[32;1m'
+    l_yellow = '\033[33;1m'
+    l_blue = '\033[34;1m'
+    l_magenta = '\033[35;1m'
+    l_cyan = '\033[36;1m'
+    l_white = '\033[37;1m'
+    reset = '\033[0m'
 
 
 def print_colored(string, color, end=''):
