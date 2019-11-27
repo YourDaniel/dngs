@@ -5,11 +5,9 @@ kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
 
 # \033 \x1b - escape character
 
-def clear_test():
-    print('\x1b[H\x1b[J', end='')
-def test_2():
-    print('\x1b[1;1H\x1b[J')
-    print('\033[2J', end='')
+
+def clear_not_working():
+    print('\033[2J')
 
 def clear():
     os.system('cls')

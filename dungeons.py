@@ -9,10 +9,12 @@ from time import sleep
 kernel32 = ctypes.windll.kernel32
 kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
 
+GAME_SPEED = 0.2
 with open('weapons.json', 'r', encoding='UTF-8-sig') as file:
     weapons = json.load(file)
 with open('materials.json', 'r', encoding='UTF-8-sig') as file:
     materials = json.load(file)
+
 # TODO: RARE things cant be bad quality or broken
 # TODO: tune random chances of things
 rarity = {'common': (0.8, 0), 'ordinary': (1, 1), 'uncommon': (1.2, 2), 'original': (1.8, 3), 'rare': (2, 4), 'unique': (2.4, 5), 'legendary': (3, 6), 'mythic': (3.5, 7)}
@@ -39,6 +41,8 @@ class Rogue:
         self.name = name
         self.class_name = 'Rogue'
 '''
+
+
 class Hero:
     def __init__(self, max_hp, attack):
         self.max_hp = max_hp
@@ -50,14 +54,14 @@ class Hero:
     def fight_monster(self, monster):
         while True:
             monster.hp -= self.attack
-            print(f'You hit monster for {self.attack} damage. HP left {monster.hp}')
-            sleep(0.5)
+            print(f'You hit monster for {self.attack} damage. HP: {monster.hp}')
+            sleep(GAME_SPEED)
             if monster.hp <= 0:
                 print(f'You defeated {monster.name}')
                 return True
             self.hp -= monster.attack
-            print(f'Monster hit you for {monster.attack} damage. HP left {self.hp}')
-            sleep(0.5)
+            print(f'Monster hit you for {monster.attack} damage. HP: {self.hp}/{self.max_hp}')
+            sleep(GAME_SPEED)
             if self.hp <= 0:
                 self.hp = 0
                 print(f'{monster.name} defeated you!')
@@ -77,12 +81,17 @@ class Hero:
             name = self.weapons[i].name
             dmg = self.weapons[i].damage
             cost = self.weapons[i].cost
-            print(f'{i+1} {name} DMG: {dmg} COST: {cost}')
+            mat = self.weapons[i].material
+            print(f'{i+1} {name} DMG:{dmg} ${cost} [{mat}]')
 
     def heal(self, amount):
+        hp_before_heal = self.hp
         self.hp += amount
         if self.hp > self.max_hp:
             self.hp = self.max_hp
+            print(f'You healed for {self.max_hp - hp_before_heal} HP')
+        else:
+            print(f'You healed for {amount} HP')
 
 
 class Enemy:
@@ -92,8 +101,8 @@ class Enemy:
         self.attack = attack
 
     def generate_name(self):
-        adjectives = ['scary', 'bone', 'horrible', 'putrid', 'bloodthirsty', 'death', 'old', 'dark', 'fierce', 'horror', 'hell', 'venomous', 'doom', 'furious']
-        monsters = ['frog', 'blob', 'bear', 'fairy', 'snake', 'minotaur', 'spider', 'bat', 'abomination', 'slug', 'rat', 'ooze'] + animals
+        adjectives = ['scary', 'bone', 'horrible', 'putrid', 'bloodthirsty', 'death', 'old', 'dark', 'fierce', 'horror', 'hell', 'venomous', 'doom', 'furious', 'cadavre', 'demonic']
+        monsters = ['frog', 'blob', 'bear', 'fairy', 'snake', 'minotaur', 'spider', 'bat', 'abomination', 'slug', 'rat', 'ooze', 'skeleton', 'vampire'] + animals
         name = Color.red + choice(adjectives).capitalize() + ' ' + choice(monsters).capitalize() + Color.reset
         return name
 
@@ -103,14 +112,14 @@ class Loot:
         rar = choices(list(rarity), weights=[60, 50, 40, 30, 20, 10, 5, 2])[0]
         wr = choices(list(wear), weights=[5, 20, 40, 10])[0]
         qual = choices(list(quality), weights=[8, 10, 15, 20, 12, 6, 2])[0]
-        mat_n = randint(0, len(materials) - 1)
-        mat = materials[mat_n]['name']
+        #mat_n = randint(0, len(materials) - 1)
+        mat = choices([record['name'] for record in materials if record['weapons'] == 1])[0]
         wpn_n = randint(0, len(weapons) - 1)
         cost_value = weapons[wpn_n]['cost']
         cost = round(cost_value * quality[qual] * wear[wr] * rarity[rar][0])
         weapon_name = rar.capitalize() + ' ' + weapons[wpn_n]['name']
         weapon = Item(weapon_name, rar, qual, wr, mat, weapons[wpn_n]['damage'], cost)
-        print(f"You've got {weapon.name} of {weapon.quality} quality! It is {weapon.wear}. Cost: {weapon.cost}")
+        print(f"You've got {weapon.name} of {weapon.quality} quality made of {weapon.material}! It is {weapon.wear}. Cost: {weapon.cost}")
         return weapon
 
     def generate_armor(self):
@@ -145,9 +154,8 @@ def main():
                 break
         print(f'You encountered {monsters[monster_id].name}!')
         if hero.fight_monster(monsters[monster_id]):
-            hp = randint(15, 30)
-            hero.hp += hp
-            print(f'You healed for {hp} hp!')
+            hero.max_hp += randint(10, 15)
+            hero.heal(randint(5, 15))
             coin = 1    # randint(0, 1)
             if coin == 0:
                 inventory.append(loot.generate_armor())
@@ -163,7 +171,6 @@ def main():
                 monster_id += 1
         else:
             print('Try again!')
-            hp = randint(5, 20)
-            hero.hp += hp
-            print(f'You healed for {hp} hp!')
+            hero.heal(randint(10, 15))
+
 main()
